@@ -8,4 +8,4 @@ Tool to work with seq files in Naruto GNT4.
 
 e.g.
 
-`python .\byakugan.py files/iru0000.seq 160`
+`python byakugan.py files/iru0000.seq 160`
