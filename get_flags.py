@@ -11,9 +11,11 @@ def main():
             index = 0
             while index < len(seq_bytes):
                 word, index = get_word(seq_bytes, index)
-                if word in (seq.K2F_SPECIAL_ATTACK_FLAG_ID, seq.K2F_SPECIAL_ATTACK_PROJ_FLAG_ID):
-                    flag_mask, index = get_word(seq_bytes, index)
-                    outputs.add(get_k2f_flags(flag_mask))
+                if word == 0x21040026:
+                    index += 4
+                    weird, index = get_word(seq_bytes, index)
+                    if weird != 0:
+                        print(weird)
     pprint(outputs)
 
 def get_seq_files(directory):

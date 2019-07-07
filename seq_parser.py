@@ -19,77 +19,102 @@ class SeqParser:
             word = self.get_word()
             if word == seq.KF_ATTACK_FLAG_ID:
                 cmd_description = seq.KF_ATTACK_FLAG_DESCRIPTION
-                flag_mask = self.get_word()
-                val_description = self.get_kf_flags(flag_mask)
-                commands.append(Command(word, cmd_description, flag_mask, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_kf_flags(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.KF_ATTACK_FLAG_PROJ_ID:
                 cmd_description = seq.KF_ATTACK_FLAG_PROJ_DESCRIPTION
-                flag_mask = self.get_word()
-                val_description = self.get_kf_flags(flag_mask)
-                commands.append(Command(word, cmd_description, flag_mask, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_kf_flags(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.K2F_SPECIAL_ATTACK_FLAG_ID:
                 cmd_description = seq.K2F_SPECIAL_ATTACK_FLAG_DESCRIPTION
-                flag_mask = self.get_word()
-                val_description = self.get_k2f_flags(flag_mask)
-                commands.append(Command(word, cmd_description, flag_mask, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_k2f_flags(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.K2F_SPECIAL_ATTACK_PROJ_FLAG_ID:
                 cmd_description = seq.K2F_SPECIAL_ATTACK_PROJ_FLAG_DESCRIPTION
-                flag_mask = self.get_word()
-                val_description = self.get_k2f_flags(flag_mask)
-                commands.append(Command(word, cmd_description, flag_mask, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_k2f_flags(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.NF_STATE_FLAG_ID:
                 cmd_description = seq.NF_STATE_FLAG_DESCRIPTION
-                flag_mask = self.get_word()
-                val_description = self.get_nf_flags(flag_mask)
-                commands.append(Command(word, cmd_description, flag_mask, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_nf_flags(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.AF_ACTION_STATE_FLAG_ID:
                 cmd_description = seq.AF_ACTION_STATE_FLAG_DESCRIPTION
-                flag_mask = self.get_word()
-                val_description = self.get_af_flags(flag_mask)
-                commands.append(Command(word, cmd_description, flag_mask, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_af_flags(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.ANIMATION_FLAG_ID:
                 cmd_description = seq.ANIMATION_FLAG_DESCRIPTION
-                animation_id = self.get_word()
-                val_description = 'ID {}'.format(self.get_hex(animation_id))
-                commands.append(Command(word, cmd_description, animation_id, val_description))
+                val_hex = self.get_word()
+                val_description = 'ID {}'.format(self.get_hex(val_hex))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.X_MOVE_METER_REQ_ID:
                 cmd_description = seq.X_MOVE_METER_REQ_DESCRIPTION
-                meter_req = self.get_word()
-                val_description = self.get_hex(meter_req)
-                commands.append(Command(word, cmd_description, meter_req, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_hex(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.HORIZ_MOBILITY_JUMP_MOVES_ID:
                 cmd_description = seq.HORIZ_MOBILITY_JUMP_MOVES_DESCRIPTION
-                mobility = self.get_word()
-                val_description = self.get_hex(mobility)
-                commands.append(Command(word, cmd_description, mobility, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_hex(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.VERT_MOBILITY_JUMP_MOVES_ID:
                 cmd_description = seq.VERT_MOBILITY_JUMP_MOVES_DESCRIPTION
-                mobility = self.get_word()
-                val_description = self.get_hex(mobility)
-                commands.append(Command(word, cmd_description, mobility, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_hex(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.PROJ_DMG_STUN_GUARD_ID:
                 cmd_description = seq.PROJ_DMG_STUN_GUARD_DESCRIPTION
-                info = self.get_word()
-                val_description = self.get_hex(info)
-                commands.append(Command(word, cmd_description, info, val_description))
+                val_hex = self.get_word()
+                val_description = self.get_hex(val_hex)
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.SOUND_EFFECT_ID:
                 cmd_description = seq.SOUND_EFFECT_DESCRIPTION
-                info = self.get_word()
-                val_description = 'ID {}'.format(self.get_hex(info))
-                commands.append(Command(word, cmd_description, info, val_description))
+                val_hex = self.get_word()
+                val_description = 'ID {}'.format(self.get_hex(val_hex))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.CHR_ACT_ID:
                 cmd_description = seq.CHR_ACT_DESCRIPION
-                info = self.get_word()
-                val_description = 'Offset {}'.format(self.get_hex(info))
-                commands.append(Command(word, cmd_description, info, val_description))
+                val_hex = self.get_word()
+                val_description = 'Offset {}'.format(self.get_hex(val_hex))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.HITBOX_ACTIVE_FRAMES_ID:
                 cmd_description = seq.HITBOX_ACTIVE_FRAMES_DESCRIPTION
-                both_frames, start_frame, end_frame = self.get_half_words()
-                val_description = 'Frames: {} - {}'.format(start_frame, end_frame)
-                commands.append(Command(word, cmd_description, both_frames, val_description))
+                val_hex, start_frame, end_frame = self.get_half_words()
+                val_description = 'Frames: {} - {}'.format(self.get_hex(start_frame), self.get_hex(end_frame))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
+            elif word == seq.HITBOX_LOC_SIZE_ID:
+                cmd_description = seq.HITBOX_ACTIVE_FRAMES_DESCRIPTION
+                values = []
+                val_hex, bone_id, size = self.get_half_words()
+                val_description = 'Bone ID: {} Size: {}'.format(self.get_hex(bone_id), self.get_hex(size))
+                values.append((val_hex, val_description))
+                val_hex = self.get_word()
+                val_description = ''
+                values.append((val_hex, val_description))
+                commands.append(Command(word, cmd_description, values))
+            elif word == seq.POW_DMG_GRD_ID:
+                cmd_description = seq.POW_DMG_GRD_DESCRIPTION
+                values = []
+                val_hex, power, dmg = self.get_half_words()
+                val_description = 'POW: {} DMG: {}'.format(self.get_hex(power), self.get_hex(dmg))
+                values.append((val_hex, val_description))
+                val_hex, grd, _ = self.get_half_words()
+                val_description = 'GRD: {}'.format(self.get_hex(grd))
+                values.append((val_hex, val_description))
+                commands.append(Command(word, cmd_description, values))
+            elif word == seq.ANG_DIR_ID:
+                cmd_description = seq.ANG_DIR_DESCRIPTION
+                val_hex, ang, dir_val = self.get_half_words()
+                val_description = 'ANG: {} DIR: {}'.format(self.get_hex(ang), self.get_hex(dir_val))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             else:
                 unknown = self.get_word()
-                commands.append(Command(word, '?', unknown, '?'))
+                commands.append(Command(word, '?', [(unknown, '?')]))
         return commands
 
     def get_word(self):
@@ -109,7 +134,7 @@ class SeqParser:
     @staticmethod
     def get_hex(word):
         ''' Gets the hex for a 4-byte word. '''
-        return '{:08X}'.format(word)
+        return '{:X}'.format(word)
 
     @staticmethod
     def get_kf_flags(flag_mask):

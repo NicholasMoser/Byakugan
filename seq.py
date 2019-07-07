@@ -52,37 +52,38 @@ ACTION_BACK_GROUND_THROW = 0x191
 ACTION_AIR_THROW = 0x192
 ACTION_ACTIVATED_X = 0x193
 
-# Animation Flag
 ANIMATION_FLAG_ID = 0x0402023F
 ANIMATION_FLAG_DESCRIPTION = 'Animation Flag'
 
-# Meter Requirement for X Moves
 X_MOVE_METER_REQ_ID = 0x227F2000
 X_MOVE_METER_REQ_DESCRIPTION = 'Meter Requirement for X Moves'
 
-# Horizontal Mobility for Jump Moves
 HORIZ_MOBILITY_JUMP_MOVES_ID = 0x2414010B
 HORIZ_MOBILITY_JUMP_MOVES_DESCRIPTION = 'Horizontal Mobility for Jump Moves'
 
-# Vertical Mobility for Jump Moves
 VERT_MOBILITY_JUMP_MOVES_ID = 0x2414020B
 VERT_MOBILITY_JUMP_MOVES_DESCRIPTION = 'Vertical Mobility for Jump Moves'
 
-# Projectile damage, stun, guard damage, etc
 PROJ_DMG_STUN_GUARD_ID = 0x47040000
 PROJ_DMG_STUN_GUARD_DESCRIPTION = 'Projectile damage, stun, guard damage, etc'
 
-# Sound Effect Reference
 SOUND_EFFECT_ID = 0x24170000
 SOUND_EFFECT_DESCRIPTION = 'Sound Effect'
 
-# Character Action Offset Reference
 CHR_ACT_ID = 0x013C0000
-CHR_ACT_DESCRIPION = 'Character Action'
+CHR_ACT_DESCRIPION = 'Character Action Offset'
 
-# Frames that the hitbox is active for
 HITBOX_ACTIVE_FRAMES_ID = 0x21070026
 HITBOX_ACTIVE_FRAMES_DESCRIPTION = 'Hitbox Active Frames'
+
+HITBOX_LOC_SIZE_ID = 0x21040026
+HITBOX_LOC_SIZE_DESCRIPTION = 'Hitbox Locations and Sizes'
+
+POW_DMG_GRD_ID = 0x21050026
+POW_DMG_GRD_DESCRIPTION = 'POW, DMG, and GRD of a move'
+
+ANG_DIR_ID = 0x21060026
+ANG_DIR_DESCRIPTION = 'ANG and DIR of a move'
 
 # KF Flags
 KF_ATTACK_FLAG_ID = 0x241A1200
