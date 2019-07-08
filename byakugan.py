@@ -26,7 +26,7 @@ def read_action(seq_path, action_id):
             print('Offset: {:X}'.format(flags_start))
             seq_parser = SeqParser(seq_bytes)
             # Currently not able to figure out end of the action, so just do a fixed sized
-            commands = seq_parser.read_action(flags_start, 256)
+            commands = seq_parser.read_action(flags_start, 334)
             for command in commands:
                 print(command)
             return

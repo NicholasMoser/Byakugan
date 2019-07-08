@@ -11,11 +11,9 @@ def main():
             index = 0
             while index < len(seq_bytes):
                 word, index = get_word(seq_bytes, index)
-                if word == 0x21040026:
-                    index += 4
+                if word == 0x24060000:
                     weird, index = get_word(seq_bytes, index)
-                    if weird != 0:
-                        print(weird)
+                    outputs.add('{:X}'.format(weird))
     pprint(outputs)
 
 def get_seq_files(directory):
@@ -30,7 +28,6 @@ def get_word(seq_bytes, index):
     ''' Reads, prints, and returns the next 4-byte word. '''
     word = int.from_bytes(seq_bytes[index:index+4], byteorder='big')
     index += 4
-    #print_hex(word)
     return word, index
 
 def print_hex(word):

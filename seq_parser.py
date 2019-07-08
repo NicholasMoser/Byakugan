@@ -72,15 +72,20 @@ class SeqParser:
                 val_hex = self.get_word()
                 val_description = self.get_hex(val_hex)
                 commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
-            elif word == seq.SOUND_EFFECT_ID:
-                cmd_description = seq.SOUND_EFFECT_DESCRIPTION
-                val_hex = self.get_word()
-                val_description = 'ID {}'.format(self.get_hex(val_hex))
+            elif word == seq.SYS_SOUND_EFFECT_ID:
+                cmd_description = seq.SYS_SOUND_EFFECT_DESCRIPTION
+                val_hex, effect_id, _ = self.get_half_words()
+                val_description = 'ID: {}'.format(self.get_hex(effect_id))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
+            elif word == seq.CHR_SOUND_EFFECT_ID:
+                cmd_description = seq.CHR_SOUND_EFFECT_DESCRIPTION
+                val_hex, effect_id, frame_delay = self.get_half_words()
+                val_description = 'ID: {} Frame Delay: {}'.format(self.get_hex(effect_id), self.get_hex(frame_delay))
                 commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.CHR_ACT_ID:
                 cmd_description = seq.CHR_ACT_DESCRIPION
                 val_hex = self.get_word()
-                val_description = 'Offset {}'.format(self.get_hex(val_hex))
+                val_description = 'Offset: {}'.format(self.get_hex(val_hex))
                 commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.HITBOX_ACTIVE_FRAMES_ID:
                 cmd_description = seq.HITBOX_ACTIVE_FRAMES_DESCRIPTION
@@ -112,6 +117,27 @@ class SeqParser:
                 val_hex, ang, dir_val = self.get_half_words()
                 val_description = 'ANG: {} DIR: {}'.format(self.get_hex(ang), self.get_hex(dir_val))
                 commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
+            elif word == seq.SYNCH_TIMER_BEGIN_ID:
+                cmd_description = seq.SYNCH_TIMER_BEGIN_DESCRIPTION
+                val_hex = self.get_word()
+                val_description = 'Timer length: {} frame(s)'.format(self.get_hex(val_hex))
+                commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
+            elif word == seq.SYNCH_TIMER_END_ID:
+                cmd_description = seq.SYNCH_TIMER_END_DESCRIPTION
+                commands.append(Command(word, cmd_description, []))
+            elif word == seq.PROJECTILE_INFO_ID:
+                cmd_description = seq.PROJECTILE_INFO_DESCRIPTION
+                values = []
+                val_hex = self.get_word()
+                val_description = '?: {}'.format(self.get_hex(val_hex))
+                values.append((val_hex, val_description))
+                val_hex = self.get_word()
+                val_description = '?: {}'.format(self.get_hex(val_hex))
+                values.append((val_hex, val_description))
+                val_hex = self.get_word()
+                val_description = '?: {}'.format(self.get_hex(val_hex))
+                values.append((val_hex, val_description))
+                commands.append(Command(word, cmd_description, values))
             else:
                 unknown = self.get_word()
                 commands.append(Command(word, '?', [(unknown, '?')]))

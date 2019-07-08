@@ -3,7 +3,6 @@ SEQ File Constants
 '''
 from collections import OrderedDict, namedtuple
 
-# 
 Action = namedtuple('Action', ['id', 'description'])
 
 # SEQ File Sections
@@ -67,11 +66,17 @@ VERT_MOBILITY_JUMP_MOVES_DESCRIPTION = 'Vertical Mobility for Jump Moves'
 PROJ_DMG_STUN_GUARD_ID = 0x47040000
 PROJ_DMG_STUN_GUARD_DESCRIPTION = 'Projectile damage, stun, guard damage, etc'
 
-SOUND_EFFECT_ID = 0x24170000
-SOUND_EFFECT_DESCRIPTION = 'Sound Effect'
+SYS_SOUND_EFFECT_ID = 0x24170000
+SYS_SOUND_EFFECT_DESCRIPTION = 'System Sound Effect'
+
+GFX_ID = 0x2A002626
+GFX_DESCRPITION = 'Graphics'
+
+CHR_SOUND_EFFECT_ID = 0x24170B00
+CHR_SOUND_EFFECT_DESCRIPTION = 'Character Sound Effect'
 
 CHR_ACT_ID = 0x013C0000
-CHR_ACT_DESCRIPION = 'Character Action Offset'
+CHR_ACT_DESCRIPION = 'Character Action'
 
 HITBOX_ACTIVE_FRAMES_ID = 0x21070026
 HITBOX_ACTIVE_FRAMES_DESCRIPTION = 'Hitbox Active Frames'
@@ -84,6 +89,15 @@ POW_DMG_GRD_DESCRIPTION = 'POW, DMG, and GRD of a move'
 
 ANG_DIR_ID = 0x21060026
 ANG_DIR_DESCRIPTION = 'ANG and DIR of a move'
+
+SYNCH_TIMER_BEGIN_ID = 0x2011263F
+SYNCH_TIMER_BEGIN_DESCRIPTION = 'Synchronous Timer Begin'
+
+SYNCH_TIMER_END_ID = 0x20120026
+SYNCH_TIMER_END_DESCRIPTION = 'Synchronous Timer End'
+
+PROJECTILE_INFO_ID = 0x47000026
+PROJECTILE_INFO_DESCRIPTION = 'Projectile Info'
 
 # KF Flags
 KF_ATTACK_FLAG_ID = 0x241A1200
