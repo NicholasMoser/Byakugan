@@ -51,6 +51,9 @@ ACTION_BACK_GROUND_THROW = 0x191
 ACTION_AIR_THROW = 0x192
 ACTION_ACTIVATED_X = 0x193
 
+PROGRESS_THROUGH_FRAMES_UNTIL_END = 0x13060020
+PROGRESS_THROUGH_FRAMES_UNTIL_END_DESCRIPTION = 'Single command, no value'
+
 ANIMATION_FLAG_ID = 0x0402023F
 ANIMATION_FLAG_DESCRIPTION = 'Animation Flag'
 
@@ -90,6 +93,8 @@ POW_DMG_GRD_DESCRIPTION = 'POW, DMG, and GRD of a move'
 ANG_DIR_ID = 0x21060026
 ANG_DIR_DESCRIPTION = 'ANG and DIR of a move'
 
+# Synchronous timer will literally execute for the given amount.
+# e.g. the hex 2011263F_00000009_20120026 just no-ops in a loop for 9 frames.
 SYNCH_TIMER_BEGIN_ID = 0x2011263F
 SYNCH_TIMER_BEGIN_DESCRIPTION = 'Synchronous Timer Begin'
 
@@ -98,6 +103,15 @@ SYNCH_TIMER_END_DESCRIPTION = 'Synchronous Timer End'
 
 PROJECTILE_INFO_ID = 0x47000026
 PROJECTILE_INFO_DESCRIPTION = 'Projectile Info'
+
+# Instructions that End the Action
+# 0x00000000_xxxxxxxx
+# 0x013C0000_00000000
+# 0x01320000 00012880 (Team super animation)
+# 0x01320000 0000A2C0
+# 0x01320000 0001D558 (Enter fall animation)
+# 0x01320000 0001BAC4 (Also fall animation)
+# 0x01320000 0001ACCC (Enter and attack in 3-man cell)
 
 # KF Flags
 KF_ATTACK_FLAG_ID = 0x241A1200

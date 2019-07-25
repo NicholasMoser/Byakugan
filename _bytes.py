@@ -1,6 +1,7 @@
 '''
 Utilities for working with bytes.
 '''
+
 def uint4(byte_list):
     ''' Returns the big endian integer for a list of four bytes.'''
     length = len(byte_list)

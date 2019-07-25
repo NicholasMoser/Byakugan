@@ -139,8 +139,7 @@ class SeqParser:
                 values.append((val_hex, val_description))
                 commands.append(Command(word, cmd_description, values))
             else:
-                unknown = self.get_word()
-                commands.append(Command(word, '?', [(unknown, '?')]))
+                commands.append(Command(word, '?', []))
         return commands
 
     def get_word(self):
