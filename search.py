@@ -2,19 +2,55 @@ from ordered_set import OrderedSet
 import os
 import seq
 from pprint import pprint
+from _bytes import uint4
 
 def main():
+    # for seq_path in get_seq_files('files'):
+    #get_action_sizes('files/iru0000.seq')
+    get_instruction_from_action_offset('files/iru0000.seq', 8)
+    #check_bytes()
+
+def check_byte(seq_bytes):
     outputs = set()
-    for seq_path in get_seq_files('files'):
-        with open(seq_path, 'rb') as seq_file:
-            seq_bytes = seq_file.read()
-            index = 0
-            while index < len(seq_bytes):
-                word, index = get_word(seq_bytes, index)
-                if word == 0x24060000:
-                    weird, index = get_word(seq_bytes, index)
-                    outputs.add('{:X}'.format(weird))
-    pprint(outputs)
+    index = 0
+    while index < len(seq_bytes):
+        word, index = get_word(seq_bytes, index)
+        if word == 0x04026600:
+            weird, index = get_word(seq_bytes, index)
+            weird, index = get_word(seq_bytes, index)
+            outputs.add('{:X}'.format(weird))
+    return outputs
+
+def get_instruction_from_action_offset(seq_path, offset):
+    ''' Finds the instruction at a given offset in all actions moving backwards. '''
+    with open(seq_path, 'rb') as seq_file:
+        seq_bytes = seq_file.read()
+        action_offsets = get_action_offsets(seq_bytes)
+        for index, action_offset in enumerate(action_offsets):
+            if index == 0:
+                print(get_hex(action_offset))
+            else:
+                new_offset = action_offset - offset
+                print(get_hex(action_offset) + ' ' + get_hex(uint4(seq_bytes[new_offset:new_offset+4])) + ' ' + get_hex(uint4(seq_bytes[new_offset+4:new_offset+8])))
+
+def get_action_sizes(seq_path):
+    ''' Finds the size of each action based on the difference between them each. '''
+    with open(seq_path, 'rb') as seq_file:
+        seq_bytes = seq_file.read()
+        action_offsets = get_action_offsets(seq_bytes)
+        for index, action_offset in enumerate(action_offsets):
+            if index == 0 or index == len(action_offsets) - 1:
+                print(get_hex(action_offset))
+            else:
+                print(get_hex(action_offset) + ' ' + get_hex(action_offsets[index + 1] - action_offset))
+
+def get_action_offsets(seq_bytes):
+    ''' Returns all action offsets for a given byte array. '''
+    actions = set()
+    for offset in seq.OFFSET_TO_ACTION.keys():
+        action = uint4(seq_bytes[offset:offset+4])
+        actions.add(action)
+    return sorted(actions)
 
 def get_seq_files(directory):
     ''' Return all seq files from a given directory. '''
@@ -30,21 +66,9 @@ def get_word(seq_bytes, index):
     index += 4
     return word, index
 
-def print_hex(word):
-    ''' Prints out the hex for a 4-byte word. '''
-    print(get_hex(word))
-
 def get_hex(word):
     ''' Gets the hex for a 4-byte word. '''
     return '{:08X}'.format(word)
-
-def get_k2f_flags(flag_mask):
-    ''' Given the bit mask for k2f flags, returns the flag displays.'''
-    flags = []
-    for key, value in seq.K2F_SPECIAL_ATTACK_FLAGS.items():
-        if flag_mask & key == key:
-            flags.append(value)
-    return frozenset(flags)
 
 if __name__ == '__main__':
     main()
