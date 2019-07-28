@@ -2,13 +2,27 @@ from ordered_set import OrderedSet
 import os
 import seq
 from pprint import pprint
-from _bytes import uint4
+from _bytes import uint
 
 def main():
-    # for seq_path in get_seq_files('files'):
+    for seq_path in get_seq_files('files'):
+        get_list_of(seq_path, seq.ANIMATION_FLAG_ID)
     #get_action_sizes('files/iru0000.seq')
-    get_instruction_from_action_offset('files/iru0000.seq', 8)
+    #get_instruction_from_action_offset('files/iru0000.seq', 8)
     #check_bytes()
+    
+def get_list_of(seq_path, instruction):
+    print(seq_path)
+    ids = set()
+    with open(seq_path, 'rb') as seq_file:
+        seq_bytes = seq_file.read()
+    index = 0
+    while index < len(seq_bytes):
+        word, index = get_word(seq_bytes, index)
+        if word == instruction:
+            weird, index = get_word(seq_bytes, index)
+            ids.add(weird)
+    print(sorted(ids))
 
 def check_byte(seq_bytes):
     outputs = set()
@@ -31,7 +45,7 @@ def get_instruction_from_action_offset(seq_path, offset):
                 print(get_hex(action_offset))
             else:
                 new_offset = action_offset - offset
-                print(get_hex(action_offset) + ' ' + get_hex(uint4(seq_bytes[new_offset:new_offset+4])) + ' ' + get_hex(uint4(seq_bytes[new_offset+4:new_offset+8])))
+                print(get_hex(action_offset) + ' ' + get_hex(uint(seq_bytes[new_offset:new_offset+4])) + ' ' + get_hex(uint(seq_bytes[new_offset+4:new_offset+8])))
 
 def get_action_sizes(seq_path):
     ''' Finds the size of each action based on the difference between them each. '''
@@ -48,7 +62,7 @@ def get_action_offsets(seq_bytes):
     ''' Returns all action offsets for a given byte array. '''
     actions = set()
     for offset in seq.OFFSET_TO_ACTION.keys():
-        action = uint4(seq_bytes[offset:offset+4])
+        action = uint(seq_bytes[offset:offset+4])
         actions.add(action)
     return sorted(actions)
 

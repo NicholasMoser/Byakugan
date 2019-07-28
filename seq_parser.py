@@ -93,7 +93,7 @@ class SeqParser:
                 val_description = 'Frames: {} - {}'.format(self.get_hex(start_frame), self.get_hex(end_frame))
                 commands.append(Command(word, cmd_description, [(val_hex, val_description)]))
             elif word == seq.HITBOX_LOC_SIZE_ID:
-                cmd_description = seq.HITBOX_ACTIVE_FRAMES_DESCRIPTION
+                cmd_description = seq.HITBOX_LOC_SIZE_DESCRIPTION
                 values = []
                 val_hex, bone_id, size = self.get_half_words()
                 val_description = 'Bone ID: {} Size: {}'.format(self.get_hex(bone_id), self.get_hex(size))

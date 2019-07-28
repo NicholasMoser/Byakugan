@@ -4,8 +4,9 @@ Byakugan will parse GNT4 seq files into a human-readable format.
 import os
 import sys
 import seq
+import time
 from seq_parser import SeqParser
-from _bytes import uint4
+from _bytes import uint
 
 def main():
     ''' Run program. '''
@@ -22,7 +23,7 @@ def read_action(seq_path, action_id):
     for offset, action in seq.OFFSET_TO_ACTION.items():
         if action_id == action.id:
             print(action.description)
-            flags_start = uint4(seq_bytes[offset:offset+4])
+            flags_start = uint(seq_bytes[offset:offset+4])
             print('Offset: {:X}'.format(flags_start))
             seq_parser = SeqParser(seq_bytes)
             # Currently not able to figure out end of the action, so just do a fixed sized
@@ -39,7 +40,7 @@ def read_seq(seq_path):
         seq_bytes = seq_file.read()
     all_starts = set()
     for offset, action in seq.OFFSET_TO_ACTION.items():
-        flags_start = uint4(seq_bytes[offset:offset+4])
+        flags_start = uint(seq_bytes[offset:offset+4])
         if flags_start == seq.CHR_ACT:
             print('{} {}'.format(offset, action.description))
         all_starts.add(flags_start)
