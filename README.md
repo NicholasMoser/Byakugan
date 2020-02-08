@@ -1,5 +1,7 @@
 # Byakugan
 
+NOTE: This project is now deprecated. The functionality will be moved over to [GNTool](https://github.com/NicholasMoser/GNTool)
+
 Tool to work with seq files in Naruto GNT4.
 
 ## How to Use
